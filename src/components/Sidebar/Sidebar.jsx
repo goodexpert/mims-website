@@ -62,7 +62,7 @@ class Sidebar extends React.Component {
   // this function creates the links and collapses that appear in the sidebar (left menu)
   createLinks = routes => {
     return routes.map((prop, key) => {
-      if (prop.redirect) {
+      if (prop.redirect || prop.invisible) {
         return null;
       }
       if (prop.collapse) {
@@ -165,53 +165,11 @@ class Sidebar extends React.Component {
             href="https://www.creative-tim.com"
             className="simple-text logo-normal"
           >
-            Creative Tim
+            MIMS
           </a>
         </div>
 
         <div className="sidebar-wrapper" ref="sidebar">
-          <div className="user">
-            <div className="photo">
-              <img src={avatar} alt="Avatar" />
-            </div>
-            <div className="info">
-              <a
-                href="#pablo"
-                data-toggle="collapse"
-                aria-expanded={this.state.openAvatar}
-                onClick={() =>
-                  this.setState({ openAvatar: !this.state.openAvatar })
-                }
-              >
-                <span>
-                  Chet Faker
-                  <b className="caret" />
-                </span>
-              </a>
-              <Collapse isOpen={this.state.openAvatar}>
-                <ul className="nav">
-                  <li>
-                    <NavLink to="/admin/user-profile" activeClassName="">
-                      <span className="sidebar-mini-icon">MP</span>
-                      <span className="sidebar-normal">My Profile</span>
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink to="/admin/user-profile" activeClassName="">
-                      <span className="sidebar-mini-icon">EP</span>
-                      <span className="sidebar-normal">Edit Profile</span>
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink to="/admin/user-profile" activeClassName="">
-                      <span className="sidebar-mini-icon">S</span>
-                      <span className="sidebar-normal">Settings</span>
-                    </NavLink>
-                  </li>
-                </ul>
-              </Collapse>
-            </div>
-          </div>
           <Nav>{this.createLinks(this.props.routes)}</Nav>
         </div>
       </div>
